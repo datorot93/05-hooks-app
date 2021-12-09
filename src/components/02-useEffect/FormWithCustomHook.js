@@ -1,4 +1,5 @@
-import React, {  useState } from 'react'
+import React, { useEffect } from 'react'
+import { useForm } from '../../hooks/useForm';
 import './effects.css'
 
 
@@ -6,24 +7,25 @@ export const FormWithCustomHook = () => {
 
     // Hook que permite ejecutar algún efecto secundario cuando algo suceda en nuestros componentes
     
-    const [formState, setFormState] = useState({
+    const [formValues, handleInputChange ] = useForm({
         name: '',
         email: '',
         password: ''
     });
 
+    const { name, email, password } = formValues;
 
-    const { name, email, password } = formState;
+    useEffect( () => {
+        console.log("Email cambió");
+    }, [ email ] );
 
-    const handleInputChange = ({ target }) => {
-        setFormState( {
-            ...formState,
-            [ target.name ]: target.value
-        });
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log( formValues );
     }
 
     return(
-        <>
+        <form onSubmit={ handleSubmit }>
             <h1>FormWithCustomHook</h1>   
             <hr />
 
@@ -64,7 +66,9 @@ export const FormWithCustomHook = () => {
                 />
             </div>
 
-        </>
+            <button type="submit" className="btn btn-primary"> Guardar </button>
+
+        </form>
 
     )
     
