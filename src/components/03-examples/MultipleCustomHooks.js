@@ -2,6 +2,7 @@ import React from 'react';
 import { useCounter } from '../../hooks/useCounter';
 import { useFetch } from '../../hooks/useFetch';
 import './effects.css';
+
 export const MultipleCustomHooks = () => {
 
     const { counter, increment } = useCounter(1);
@@ -12,6 +13,7 @@ export const MultipleCustomHooks = () => {
     const { author, quote } = !!data && data[0];
     // console.log( author, quote );
 
+    
     return (
         <div>
             <h1>Breaking Bad Quotes</h1>
