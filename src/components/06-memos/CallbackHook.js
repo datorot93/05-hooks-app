@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState } from 'react';
-import { useCallback } from 'react/cjs/react.production.min';
 import '../02-useEffect/effects.css';
 import { ShowIncrement } from './ShowIncrement';
 
@@ -8,12 +7,10 @@ export const CallbackHook = () => {
 
     const [counter, setCounter] = useState( 10 );
 
-    // const increment = () => {
-    //     setCounter( counter + 1 );
-    // };
 
-    const increment = useCallback( () => {
-        setCounter( c => c + 1 );
+
+    const increment = useCallback( (num) => {
+        setCounter( c => c + num ); // Para eliminar dependencia del Counter
     }, [ setCounter ]);
 
     return (
